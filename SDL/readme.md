@@ -1,0 +1,4 @@
+SDL2-2.26.2
+SDL2_ttf-2.20.1
+SDL2_image-2.6.2
+SDL2_gfx-1.0.4
