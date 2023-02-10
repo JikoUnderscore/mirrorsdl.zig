@@ -25,6 +25,7 @@ pub fn build(b: *std.build.Builder) !void {
     lib.addIncludePath(sdl2_image ++ "/include");
     lib.addIncludePath(sdl2_ttf ++ "/include");
     lib.addIncludePath(sdl2_gfx ++ "/include");
+    lib.addIncludePath("./src/sdlmirror/sdl.zig");
 
     lib.addLibraryPath(sdl2 ++ "/lib/x64");
     lib.addLibraryPath(sdl2_image ++ "/lib/x64");
