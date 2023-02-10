@@ -4,14 +4,14 @@ pub fn build(b: *std.build.Builder) !void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
-    // b.addModule(.{
-    //     .name = "sdl",
-    //     .source_file = .{ .path = "src/sdlmirror/sdl.zig" },
-    // });
+    b.addModule(.{
+        .name = "sdl",
+        .source_file = .{ .path = "src/sdlmirror/sdl.zig" },
+    });
 
     const lib = b.addStaticLibrary(.{
         .name = "sdl",
-        // .root_source_file = .{ .path = "src/sdlmirror/sdl.zig" },
+        .root_source_file = .{ .path = "src/sdlmirror/sdl.zig" },
         .target = target,
         .optimize = optimize,
     });
