@@ -19,15 +19,15 @@ pub fn build(b: *std.Build) !void {
     const sdl2_gfx = "./SDL/SDL2_gfx-1.0.4";
 
 
-    lib.addIncludePath(sdl2 ++ "/include");
-    lib.addIncludePath(sdl2_image ++ "/include");
-    lib.addIncludePath(sdl2_ttf ++ "/include");
-    lib.addIncludePath(sdl2_gfx ++ "/include");
+    lib.addIncludePath(b.pathFromRoot(sdl2 ++ "/include"));
+    lib.addIncludePath(b.pathFromRoot(sdl2_image ++ "/include"));
+    lib.addIncludePath(b.pathFromRoot(sdl2_ttf ++ "/include"));
+    lib.addIncludePath(b.pathFromRoot(sdl2_gfx ++ "/include"));
 
-    lib.addLibraryPath(sdl2 ++ "/lib/x64");
-    lib.addLibraryPath(sdl2_image ++ "/lib/x64");
-    lib.addLibraryPath(sdl2_ttf ++ "/lib/x64");
-    lib.addLibraryPath(sdl2_gfx ++ "/lib");
+    lib.addLibraryPath(b.pathFromRoot(sdl2 ++ "/lib/x64"));
+    lib.addLibraryPath(b.pathFromRoot(sdl2_image ++ "/lib/x64"));
+    lib.addLibraryPath(b.pathFromRoot(sdl2_ttf ++ "/lib/x64"));
+    lib.addLibraryPath(b.pathFromRoot(sdl2_gfx ++ "/lib"));
 
     // b.installBinFile(sdl2 ++ "/lib/x64/SDL2.dll", "SDL2.dll");
     // b.installBinFile(sdl2_image ++ "/lib/x64/SDL2_image.dll", "SDL2_image.dll");
@@ -40,10 +40,6 @@ pub fn build(b: *std.Build) !void {
     lib.linkSystemLibrary("SDL2_gfx");
     lib.linkLibC();
     lib.install();
-    lib.installHeadersDirectory(sdl2 ++ "/include", "sdls");
-    lib.installHeadersDirectory(sdl2_image ++ "/include", "sdls");
-    lib.installHeadersDirectory(sdl2_ttf ++ "/include", "sdls");
-    lib.installHeadersDirectory(sdl2_gfx ++ "/include", "sdls");
 
 
 
