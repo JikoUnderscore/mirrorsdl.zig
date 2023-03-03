@@ -26,7 +26,6 @@ pub fn build(b: *std.Build) !void {
     lib.addIncludePath(sdl2_image ++ "/include");
     lib.addIncludePath(sdl2_ttf ++ "/include");
     lib.addIncludePath(sdl2_gfx ++ "/include");
-    lib.addIncludePath("./src/sdlmirror/sdl.zig");
 
     lib.addLibraryPath(sdl2 ++ "/lib/x64");
     lib.addLibraryPath(sdl2_image ++ "/lib/x64");
@@ -44,6 +43,10 @@ pub fn build(b: *std.Build) !void {
     lib.linkSystemLibrary("SDL2_gfx");
     lib.linkLibC();
     lib.install();
+    lib.installHeadersDirectory(sdl2 ++ "/include", "sdls");
+    lib.installHeadersDirectory(sdl2_image ++ "/include", "sdls");
+    lib.installHeadersDirectory(sdl2_ttf ++ "/include", "sdls");
+    lib.installHeadersDirectory(sdl2_gfx ++ "/include", "sdls");
 
     // [_]struct { []const u8, []const u8 }
     const build_list = [_]struct { []const u8, []const u8 }{
