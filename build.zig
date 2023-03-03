@@ -4,10 +4,7 @@ pub fn build(b: *std.Build) !void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
-    b.addModule(.{
-        .name = "sdl",
-        .source_file = .{ .path = "src/sdlmirror/sdl.zig" },
-    });
+
 
     const lib = b.addStaticLibrary(.{
         .name = "sdls",
@@ -47,6 +44,8 @@ pub fn build(b: *std.Build) !void {
     lib.installHeadersDirectory(sdl2_image ++ "/include", "sdls");
     lib.installHeadersDirectory(sdl2_ttf ++ "/include", "sdls");
     lib.installHeadersDirectory(sdl2_gfx ++ "/include", "sdls");
+
+
 
     // [_]struct { []const u8, []const u8 }
     const build_list = [_]struct { []const u8, []const u8 }{
@@ -106,4 +105,11 @@ pub fn build(b: *std.Build) !void {
         const run_step = b.step(bild.*[1], "Run an example");
         run_step.dependOn(&run.step);
     }
+
+
+    b.addModule(.{
+        .name = "sdl",
+        .source_file = .{ .path = "src/sdlmirror/sdl.zig" },
+        
+    });
 }
