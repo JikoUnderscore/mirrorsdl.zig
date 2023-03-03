@@ -142,7 +142,7 @@ pub fn main() !void {
         canvas.set_draw_color_tuple(.{ 0, 0, 0, 255 });
         canvas.clear();
 
-        for (game.playground) |unit, i| {
+        for (game.playground, 0..) |unit, i| {
             const square_texture = if (frame >= 15) &square_texture1 else &square_texture2;
             if (unit) {
                 try canvas.copy(square_texture, null, sdl2.rect.Rect.init(
@@ -198,7 +198,7 @@ const GameOfLife = struct {
     pub fn update(self: *GameOfLife) void {
         
         var new_pg = self.playground;
-        for (new_pg)|*square, u| {
+        for (&new_pg, 0..)|*square, u| {
             // const u = @intCast(u32, u_);
             const x = u % PLAYGROUND_WIDTH;
             const y = u / PLAYGROUND_WIDTH;

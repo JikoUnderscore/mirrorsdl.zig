@@ -1,9 +1,11 @@
 .{
     .name = "events",
     .version = "0.0.0",
-    .dependency = .{
+
+    .dependencies = .{
         .sdl = .{
-            .
-        }
-    }
+            .url = "https://github.com/JikoUnderscore/testing/archive/a9205615991cd81eb6490be86627b58fb18784b7.tar.gz",
+            .hash = "1220f5acf5b320bd5df0d87f915484a2d214eb767053c0c756bfd68f3f6f8ce994e4",
+        },
+    },
 }

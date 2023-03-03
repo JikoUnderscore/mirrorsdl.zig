@@ -1,6 +1,6 @@
 const std = @import("std");
 
-pub fn build(b: *std.build.Builder) !void {
+pub fn build(b: *std.Build) !void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
@@ -15,7 +15,7 @@ pub fn build(b: *std.build.Builder) !void {
         .target = target,
         .optimize = optimize,
     });
-
+    // exe.addModule("zls", b.dependency("zls", .{}).module("zls"))
     const sdl2 = "./SDL/SDL2-2.26.2";
     const sdl2_image = "./SDL/SDL2_image-2.6.2";
     const sdl2_ttf = "./SDL/SDL2_ttf-2.20.1";
@@ -58,7 +58,7 @@ pub fn build(b: *std.build.Builder) !void {
         .{ "examples/test_gfx.zig", "run_test_gfx" },
     };
 
-    for (build_list) |*bild| {
+    for (&build_list) |*bild| {
         var exe = b.addExecutable(.{
             .name = bild.*[1],
             .root_source_file = .{ .path = bild.*[0] },
