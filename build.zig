@@ -10,16 +10,17 @@ pub fn build(b: *std.Build) !void {
     });
 
     const lib = b.addStaticLibrary(.{
-        .name = "sdl",
-        .root_source_file = .{ .path = "src/sdlmirror/sdl.zig" },
+        .name = "sdls",
         .target = target,
         .optimize = optimize,
     });
+
     // exe.addModule("zls", b.dependency("zls", .{}).module("zls"))
     const sdl2 = "./SDL/SDL2-2.26.2";
     const sdl2_image = "./SDL/SDL2_image-2.6.2";
     const sdl2_ttf = "./SDL/SDL2_ttf-2.20.1";
     const sdl2_gfx = "./SDL/SDL2_gfx-1.0.4";
+
 
     lib.addIncludePath(sdl2 ++ "/include");
     lib.addIncludePath(sdl2_image ++ "/include");
@@ -32,10 +33,10 @@ pub fn build(b: *std.Build) !void {
     lib.addLibraryPath(sdl2_ttf ++ "/lib/x64");
     lib.addLibraryPath(sdl2_gfx ++ "/lib");
 
-    b.installBinFile(sdl2 ++ "/lib/x64/SDL2.dll", "SDL2.dll");
-    b.installBinFile(sdl2_image ++ "/lib/x64/SDL2_image.dll", "SDL2_image.dll");
-    b.installBinFile(sdl2_ttf ++ "/lib/x64/SDL2_ttf.dll", "SDL2_ttf.dll");
-    b.installBinFile(sdl2_gfx ++ "/lib/SDL2_gfx.dll", "SDL2_gfx.dll");
+    // b.installBinFile(sdl2 ++ "/lib/x64/SDL2.dll", "SDL2.dll");
+    // b.installBinFile(sdl2_image ++ "/lib/x64/SDL2_image.dll", "SDL2_image.dll");
+    // b.installBinFile(sdl2_ttf ++ "/lib/x64/SDL2_ttf.dll", "SDL2_ttf.dll");
+    // b.installBinFile(sdl2_gfx ++ "/lib/SDL2_gfx.dll", "SDL2_gfx.dll");
 
     lib.linkSystemLibrary("SDL2");
     lib.linkSystemLibrary("SDL2_image");
