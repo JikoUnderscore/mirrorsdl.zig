@@ -38,9 +38,13 @@ pub fn build(b: *std.Build) !void {
     lib.linkSystemLibrary("SDL2_image");
     lib.linkSystemLibrary("SDL2_ttf");
     lib.linkSystemLibrary("SDL2_gfx");
-    lib.linkLibC();
-    lib.install();
 
+    lib.linkLibC();
+    lib.installHeadersDirectory(b.pathFromRoot(sdl2 ++ "/include"), "sdls");
+    lib.installHeadersDirectory(b.pathFromRoot(sdl2_image ++ "/include"), "sdls");
+    lib.installHeadersDirectory(b.pathFromRoot(sdl2_ttf ++ "/include"), "sdls");
+    lib.installHeadersDirectory(b.pathFromRoot(sdl2_gfx ++ "/include"), "sdls");
+    lib.install();
 
 
     // [_]struct { []const u8, []const u8 }
